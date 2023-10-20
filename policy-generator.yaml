@@ -1,0 +1,28 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: setup-aap
+placementBindingDefaults:
+  name: aap-placement-binding
+policyDefaults:
+  namespace: policies
+  placement:
+    placementName: aap-placement
+  remediationAction: enforce
+  informGatekeeperPolicies: false 
+  severity: medium
+  ignorePending: true
+policies:
+  - name: policy-install-aapoperator
+    manifests:
+      - path: operator
+    remediationAction: enforce
+  - name: policy-setup-hub-instance
+    manifests:
+      - path: hub-instance
+  - name: policy-setup-instance
+    manifests:
+      - path: instance
+
+   
+   
